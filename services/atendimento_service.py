@@ -52,3 +52,51 @@ def chamar_proximo():
         return atendimento
 
     return None
+
+def finalizar_atendimento(
+        atendimento,
+        atendente
+):
+
+    atendimento.atendente = atendente
+
+    atendimento.data_fim = (
+        datetime.now()
+    )
+
+    atendimento.duracao = (
+        atendimento.data_fim
+        -
+        atendimento.data_inicio
+    ).seconds
+
+    historico.append(
+        atendimento
+    )
+
+    pilha_desfazer.push(
+        atendimento
+    )
+
+    print(
+        "Atendimento finalizado"
+    )
+
+
+def historico_cliente(
+        cliente_id
+):
+
+    for atendimento in historico:
+
+        if (
+            atendimento.cliente.id
+            ==
+            cliente_id
+        ):
+
+            print(
+                atendimento.cliente.nome,
+                atendimento.data_inicio,
+                atendimento.duracao
+            )
