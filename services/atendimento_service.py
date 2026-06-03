@@ -100,3 +100,25 @@ def historico_cliente(
                 atendimento.data_inicio,
                 atendimento.duracao
             )
+            
+def desfazer_ultima_finalizacao():
+
+    atendimento = (
+        pilha_desfazer.pop()
+    )
+
+    if atendimento:
+
+        historico.remove(
+            atendimento
+        )
+
+        print(
+            "Última finalização desfeita"
+        )
+
+    else:
+
+        print(
+            "Nada para desfazer"
+        )
